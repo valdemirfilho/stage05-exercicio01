@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+:root {
+  /* --primary-color: hsla(194, 97%, 31%, 0.5); */
+  --bg-theme: hsla(240, 9%, 89%, 0.5);
+  --text-color: hsl(0, 0%, 10%);
+  --fill-color: hsl(0, 0%, 20%);
+  --shadow-color: hsl(0, 0%, 10%);
+  font-size: 6.25%;
+}
+
+html, body {
+  height: 100%;
+  font-size: 16rem;
+}
+
+body.fire {
+  --text-color: hsl(10, 100%, 50%);
+  --primary-color: hsla(10, 100%, 20%, 0.5);
+  --fill-color: hsl(10, 100%, 50%);
+}
+
+body.rain {
+  --text-color: hsl(209, 100%, 40%);
+  --primary-color: hsla(209, 100%, 61%, 0.6); 
+  --fill-color: hsl(209, 100%, 40%);
+  --shadow-color: hsl(209, 100%, 20%);
+}
+
+body.forest {
+  --text-color: hsl(116, 100%, 31%); 
+  --primary-color: hsla(116, 100%, 31%, 0.5); 
+  --fill-color: hsl(116, 100%, 31%); 
+  --shadow-color: hsl(120, 100%, 10%); 
+}
+
+body.coffeeshop {
+  --text-color: hsl(0, 60%, 40%); 
+  --primary-color: hsla(1, 60%, 40%, 0.6);
+  --fill-color: hsl(0, 60%, 40%); 
+  --shadow-color: hsl(0, 60%, 20%); 
+}
+
+input[type="checkbox"],
+.hide {
+  display: none;
+}
+
+#app {
+  width: 100%;
+  min-width: 320px;
+  max-width: 360px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 32px;
+  height: 100%;
+}
+
+.display {
+  font-family: 'Roboto', sans-serif;
+  font-size: 120rem;
+  display: flex;
+  font-weight: 500;
+  color: var(--text-color);
+  text-shadow: 1px 2px 4px var(--shadow-color);
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.controls button {
+  border: none;
+  appearance: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.controls button > svg {
+  filter: drop-shadow(1px 2px 1px var(--shadow-color));
+}
+
+.controls button > svg path {
+  fill: var(--fill-color);
+}
+
+.controls button:disabled > svg path {
+  fill: grey;
+}
+
+.themes {
+  display: grid;
+  grid: 1fr 1fr / 1fr 1fr;
+  gap: 8px;
+}
+
+.themes__button {
+  height: 150px;
+  width: 150px;
+  border-radius: 24px;
+}
+
+.themes__button label:hover {
+  cursor: pointer;
+  background-color: hsla(0, 10%, 80%, 0.5);
+  /* background-color: var(--primary-color);  */
+}
+
+/* .themes__button #forest + label:hover > svg path { */
+/*   fill: hsl(116, 100%, 61%);  */
+/* } */
+
+/* .themes__button #rain + label:hover > svg path { */
+/*   fill: hsl(220, 100%, 70%); */
+/* } */
+
+/* .themes__button #fire + label:hover > svg path { */
+/*   fill: hsl(10, 100%, 50%); */
+/* } */
+
+/* .themes__button #coffeeshop + label:hover > svg path { */
+/*   fill: hsl(0, 60%, 30%); */
+/* } */
+
+.themes__button label {
+  background-color: var(--bg-theme);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 150px;
+  width: 150px;
+  border-radius: 24px;
+  backdrop-filter: blur(4px); 
+}
+
+#forest:checked ~ label,
+#rain:checked ~ label,
+#coffeeshop:checked ~ label,
+#fire:checked ~ label {
+  background-color: var(--primary-color);
+  backdrop-filter: blur(4px); 
+}
+
+#forest:checked ~ label svg path,
+#rain:checked ~ label svg path,
+#coffeeshop:checked ~ label svg path,
+#fire:checked ~ label svg path {
+  fill: white;
+}
+
+.blink {
+  /* visibility: hidden; */
+  animation: blink 1s ease infinite;
+}
+
+@media (min-width: 600px) {
+  #app {
+    max-width: 800px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .display {
+    margin-bottom: 48px;
+  }
+
+  .themes {
+    gap: 32px;
+  }
+}
+
+@keyframes blink {  
+from {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+video {
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
