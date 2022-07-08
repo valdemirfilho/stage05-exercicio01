@@ -1,4 +1,4 @@
-import { btnPlay, btnPause, btnStop, separator, btnPlus, btnMinus } from './elements.js'
+import { btnPlay, btnPause, separator, btnPlus, btnMinus } from './elements.js'
 
 const Controls = () => {
   const play = () => {

@@ -27,6 +27,7 @@ body.fire {
   --text-color: hsl(10, 100%, 50%);
   --primary-color: hsla(10, 100%, 20%, 0.5);
   --fill-color: hsl(10, 100%, 50%);
+  --shadow-color: hsl(20, 100%, 30%);
 }
 
 body.rain {
@@ -53,6 +54,34 @@ body.coffeeshop {
 input[type="checkbox"],
 .hide {
   display: none;
+}
+
+input[type="range"] {
+  /* display: initial; */
+  position: absolute;
+  bottom: 30px;
+  left: 20px;
+  accent-color: white; 
+  width: 110px;
+  height: 5px;
+  opacity: 0;
+  visibility: hidden;
+}
+
+input[type="range"]:focus-visible ~ span,
+input[type="range"]:hover ~ span {
+  opacity: 1;
+}
+
+.themes__button span {
+  position: absolute;
+  bottom: 5px;
+  width: 100%;
+  text-align: center;
+  font-family: Roboto;
+  color: white;
+  opacity: 0;
+  transition: opacity 250ms;
 }
 
 #app {
@@ -112,6 +141,7 @@ input[type="checkbox"],
   height: 150px;
   width: 150px;
   border-radius: 24px;
+  position: relative;
 }
 
 .themes__button label:hover {
@@ -147,6 +177,11 @@ input[type="checkbox"],
   backdrop-filter: blur(4px); 
 }
 
+.themes__button svg {
+  margin-bottom: 15px;
+}
+
+
 #forest:checked ~ label,
 #rain:checked ~ label,
 #coffeeshop:checked ~ label,
@@ -160,6 +195,15 @@ input[type="checkbox"],
 #coffeeshop:checked ~ label svg path,
 #fire:checked ~ label svg path {
   fill: white;
+}
+
+#forest:checked ~ input[type="range"],
+#rain:checked ~ input[type="range"],
+#coffeeshop:checked ~ input[type="range"],
+#fire:checked ~ input[type="range"] {
+  /* display: initial; */
+  opacity: 1;
+  visibility: visible;
 }
 
 .blink {
