@@ -13,8 +13,10 @@ const timer = (minutes, seconds) => {
     timeId = setInterval(() => {
       if (minutes == 0 && seconds == 0) {
         controls.reset()
+        controls.enabled()
         display.update(minutes, seconds)
         clearInterval(timeId)
+        alert("O tempo acabou!!")
         return
       }
 
@@ -32,6 +34,7 @@ const timer = (minutes, seconds) => {
   }
 
   const stop = () => {
+    if (minutes == 0) controls.disabledBtn("btnMinus")
     minutes = initialMinutes
     seconds = initialSeconds
     display.update(initialMinutes, initialSeconds)
@@ -40,12 +43,14 @@ const timer = (minutes, seconds) => {
 
   const plus5minutes = () => {
     minutes = minutes + 5
+    if (minutes > 0) controls.enabledBtn("btnPlay", "btnStop", "btnPlus", "btnMinus")
     initialMinutes = minutes
     display.update(minutes, seconds)
   }
 
   const minus5minutes = () => {
-    minutes = minutes - 5
+    if (minutes > 0) minutes = minutes - 5
+    if (minutes == 0) controls.disabledBtn("btnMinus", "btnPlay", "btnStop")
     initialMinutes = minutes
     if (minutes < 0) minutes = 0
     display.update(minutes, seconds)

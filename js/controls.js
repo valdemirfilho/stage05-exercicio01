@@ -1,6 +1,8 @@
-import { btnPlay, btnPause, separator, btnPlus, btnMinus } from './elements.js'
+import { btnPlay, btnPause, btnStop, separator, btnPlus, btnMinus } from './elements.js'
 
 const Controls = () => {
+  const buttonsList = { btnPlay, btnPause, btnStop, btnMinus, btnPlus }
+
   const play = () => {
     btnPlay.classList.add('hide')
     btnPause.classList.remove('hide')
@@ -13,21 +15,19 @@ const Controls = () => {
     separator.classList.remove('blink')
   }
 
-  const enabled = () => {
-    btnPlus.disabled = false
-    btnMinus.disabled = false
+  const enabledBtn = (...buttonsEnabled) => {
+    buttonsEnabled.forEach(button => buttonsList[button].disabled = false)
   }
 
-  const disabled = () => {
-    btnPlus.disabled = true 
-    btnMinus.disabled = true 
+  const disabledBtn = (...buttonsDisabled) => {
+    buttonsDisabled.forEach(button => buttonsList[button].disabled = true)
   }
 
   return {
     reset,
     play,
-    enabled,
-    disabled
+    enabledBtn,
+    disabledBtn
   }
 }
 

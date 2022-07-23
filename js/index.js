@@ -12,19 +12,19 @@ const timer = Timer(minutes, seconds)
 
 btnPlay.onclick = () => {
   controls.play()
-  controls.disabled()
+  controls.disabledBtn("btnPlus", "btnMinus")
   timer.countdown()
 }
 
 btnPause.onclick = () => {
   controls.reset()
-  controls.disabled()
+  controls.disabledBtn("btnPlus", "btnMinus")
   timer.pause()
 }
 
 btnStop.onclick = () => {
   controls.reset()
-  controls.enabled()
+  controls.enabledBtn("btnPlus", "btnMinus")
   timer.stop()
 }
 
